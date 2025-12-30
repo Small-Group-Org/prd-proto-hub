@@ -95,7 +95,7 @@ function HomeContent() {
         <div className="container mx-auto max-w-6xl">
           <div className="fade-in">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white tracking-tight">
-              PRD to Prototype
+              PRD to UI Prototype
             </h1>
             <p className="text-lg md:text-xl text-gray-300">
               Submit your PRD and generate UI prototypes

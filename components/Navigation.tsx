@@ -18,7 +18,7 @@ export default function Navigation() {
       <div className="container mx-auto px-6 md:px-12 py-5">
         <div className="flex justify-between items-center">
           <Link href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors tracking-tight">
-            PRD-to-Proto
+            PRD-PROTO-HUB
           </Link>
           <div className="flex gap-3 items-center">
             {isAuthenticated ? (

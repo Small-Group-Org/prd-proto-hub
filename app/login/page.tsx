@@ -55,7 +55,7 @@ function LoginPageContent() {
         {/* Logo/Brand Section */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
-            PRD-to-Proto
+            PRD-PROTO-HUB
           </h1>
           <p className="text-gray-300">
             Sign in to access your account

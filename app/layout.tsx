@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
-  title: "prd-proto-hub - UI Prototype Generator",
+  title: "PRD-PROTO-HUB - UI Prototype Generator",
   description: "Submit PRDs and generate UI prototypes automatically",
 };
 

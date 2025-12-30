@@ -5,7 +5,7 @@ import { prisma } from "./prisma";
 const samlOptions: SamlConfig = {
   // Identity Provider (IdP) Configuration
   entryPoint: process.env.SAML_ENTRY_POINT || "https://sso.smallgroup.com/saml/login",
-  issuer: process.env.SAML_ISSUER || "prd-to-proto",
+  issuer: process.env.SAML_ISSUER || "prd-proto-hub",
   callbackUrl: process.env.SAML_CALLBACK_URL || "http://localhost:3000/api/auth/saml/callback",
   
   // Service Provider (SP) Configuration
@@ -24,7 +24,7 @@ const samlOptions: SamlConfig = {
   signatureAlgorithm: "sha256" as const,
   
   // Audience validation
-  audience: process.env.SAML_ISSUER || "prd-to-proto",
+  audience: process.env.SAML_ISSUER || "prd-proto-hub",
 };
 
 // Create SAML instance
