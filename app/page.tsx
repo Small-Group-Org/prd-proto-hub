@@ -91,13 +91,13 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="hero-gradient py-20 md:py-24 px-4 text-center">
+      <div className="hero-gradient py-12 sm:py-16 md:py-20 lg:py-24 px-4 text-center">
         <div className="container mx-auto max-w-6xl">
           <div className="fade-in">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-3 sm:mb-4 text-white tracking-tight">
               PRD to UI Prototype
             </h1>
-            <p className="text-lg md:text-xl text-gray-300">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 px-2">
               Submit your PRD and generate UI prototypes
             </p>
           </div>
@@ -105,8 +105,8 @@ function HomeContent() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 md:px-6 py-12 max-w-4xl">
-        <div className="light-card rounded-2xl p-8 md:p-12 -mt-12 md:-mt-16 relative z-10 fade-in">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 max-w-4xl">
+        <div className="light-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 relative z-10 fade-in">
           {message && (
             <div
               className={`mb-6 p-4 rounded-lg border ${
@@ -122,9 +122,9 @@ function HomeContent() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             <div className="fade-in-delay-1">
-              <label htmlFor="prd-name" className="block text-sm font-semibold text-foreground mb-2 tracking-wide">
+              <label htmlFor="prd-name" className="block text-xs sm:text-sm font-semibold text-foreground mb-2 tracking-wide">
                 PRD Name <span className="text-muted-foreground font-normal text-xs">(optional)</span>
               </label>
               <input
@@ -132,21 +132,21 @@ function HomeContent() {
                 type="text"
                 value={prdName}
                 onChange={(e) => setPrdName(e.target.value)}
-                className="w-full px-4 py-3 light-input rounded-lg"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 light-input rounded-lg text-sm sm:text-base"
                 placeholder="Enter a descriptive name for your PRD"
               />
             </div>
 
             <div className="fade-in-delay-2">
-              <label htmlFor="prd-content" className="block text-sm font-semibold text-foreground mb-2 tracking-wide">
+              <label htmlFor="prd-content" className="block text-xs sm:text-sm font-semibold text-foreground mb-2 tracking-wide">
                 PRD Content
               </label>
               <textarea
                 id="prd-content"
                 value={prdContent}
                 onChange={(e) => setPrdContent(e.target.value)}
-                className="w-full px-4 py-3.5 light-textarea rounded-lg font-mono text-sm resize-y min-h-[300px]"
-                rows={14}
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3.5 light-textarea rounded-lg font-mono text-xs sm:text-sm resize-y min-h-[200px] sm:min-h-[250px] md:min-h-[300px]"
+                rows={10}
                 placeholder="Paste your PRD content here...&#10;&#10;Include details about:&#10;- Features and requirements&#10;- User flows&#10;- Design specifications&#10;- Technical constraints"
                 required
               />
@@ -154,19 +154,19 @@ function HomeContent() {
 
             <div className="fade-in-delay-3">
               <div className="divider-text">
-                <span>Or Upload File</span>
+                <span className="text-xs sm:text-sm">Or Upload File</span>
               </div>
-              <div className="file-upload-area rounded-xl p-10 text-center">
+              <div className="file-upload-area rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-10 text-center">
                 <input
                   id="file-upload"
                   type="file"
                   accept=".pdf,.txt,.md"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-3 light-input rounded-lg text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-dark file:cursor-pointer cursor-pointer"
+                  className="w-full px-2 sm:px-4 py-2 sm:py-3 light-input rounded-lg text-xs sm:text-sm file:mr-2 sm:file:mr-4 file:py-1.5 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-lg file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-dark file:cursor-pointer cursor-pointer"
                 />
                 {file && (
-                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-sm font-medium text-blue-900">
+                  <div className="mt-3 sm:mt-4 p-2 sm:p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-xs sm:text-sm font-medium text-blue-900 break-words">
                       ✓ Selected: <span className="text-primary font-semibold">{file.name}</span>
                     </p>
                   </div>
@@ -175,7 +175,7 @@ function HomeContent() {
             </div>
 
             <div className="fade-in-delay-4">
-              <label htmlFor="user-email" className="block text-sm font-semibold text-foreground mb-2 tracking-wide">
+              <label htmlFor="user-email" className="block text-xs sm:text-sm font-semibold text-foreground mb-2 tracking-wide">
                 Your Email
               </label>
               <input
@@ -183,30 +183,32 @@ function HomeContent() {
                 type="email"
                 value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
-                className="w-full px-4 py-3 light-input rounded-lg bg-gray-50"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 light-input rounded-lg text-sm sm:text-base"
                 placeholder="your.email@example.com"
-                readOnly={!!user}
                 required
               />
-              <p className="mt-2 text-xs text-muted flex items-center gap-1.5">
-                <span>📧</span> Deploy link will be sent to this email address when generation completes
+              <p className="mt-2 text-xs text-muted flex items-start sm:items-center gap-1.5">
+                <span className="mt-0.5 sm:mt-0">📧</span>
+                <span>Deploy link will be sent to this email address when generation completes</span>
               </p>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting || !prdContent || !userEmail}
-              className="w-full primary-button py-4 px-6 rounded-xl font-bold text-base focus:outline-none flex items-center justify-center gap-2"
+              className="w-full primary-button py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base focus:outline-none flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
                   <span className="spinner"></span>
-                  Starting Generation...
+                  <span className="hidden sm:inline">Starting Generation...</span>
+                  <span className="sm:hidden">Starting...</span>
                 </>
               ) : (
                 <>
                   <span>✨</span>
-                  Generate UI Prototype
+                  <span className="hidden sm:inline">Generate UI Prototype</span>
+                  <span className="sm:hidden">Generate</span>
                 </>
               )}
             </button>
