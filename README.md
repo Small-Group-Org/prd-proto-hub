@@ -33,7 +33,7 @@ Create a `.env` file in the root directory:
 
 ```bash
 # Database Configuration
-DATABASE_URL="postgresql://postgres:password@host:5432/prd-to-proto"
+DATABASE_URL="postgresql://postgres:password@host:5432/prd-proto-hub"
 
 # JWT Configuration
 JWT_SECRET="your-secret-key-change-in-production"
@@ -44,7 +44,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 # SAML SSO Configuration (Required for Authentication)
 SAML_ENTRY_POINT="https://sso.smallgroup.com/saml/login"
-SAML_ISSUER="prd-to-proto"
+SAML_ISSUER="prd-proto-hub"
 SAML_CALLBACK_URL="http://localhost:3000/api/auth/saml/callback"
 
 # IdP Certificate - Required for production, optional for dev

@@ -50,21 +50,21 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#001f3f]/85 px-4">
       <div className="max-w-md w-full">
         {/* Logo/Brand Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-primary mb-2">
+          <h1 className="text-4xl font-bold text-white mb-2">
             PRD-to-Proto
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-300">
             Sign in to access your account
           </p>
         </div>
 
         {/* Login Form */}
         <div className="light-card rounded-2xl p-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
             Welcome back
           </h2>
 
@@ -105,7 +105,7 @@ function LoginPageContent() {
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
+        <div className="mt-6 text-center text-sm text-gray-300">
           <p>
             Don&apos;t have an account? Contact your administrator for an invitation.
           </p>
@@ -118,10 +118,10 @@ function LoginPageContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center bg-[#001f3f]/50">
         <div className="text-center">
           <div className="spinner mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-300">Loading...</p>
         </div>
       </div>
     }>
