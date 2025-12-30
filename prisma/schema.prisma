@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum UserRole {
+  SUPERUSER
+  ADMIN
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  REVOKED
+}
+
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  passwordHash  String
+  firstName     String
+  lastName      String
+  role          UserRole    @default(USER)
+  status        UserStatus  @default(ACTIVE)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  lastLoginAt   DateTime?
+  
+  // Relations
+  invitedBy          User?        @relation("UserInvites", fields: [invitedById], references: [id])
+  invitedById        String?
+  invitees           User[]       @relation("UserInvites")
+  sentInvitations    Invitation[] @relation("SentInvitations")
+  generations        Generation[] @relation("UserGenerations")
+  auditLogs          AuditLog[]
+
+  @@index([email])
+  @@index([status])
+}
+
+model Invitation {
+  id            String           @id @default(cuid())
+  email         String
+  role          UserRole
+  status        InvitationStatus @default(PENDING)
+  token         String           @unique
+  expiresAt     DateTime
+  createdAt     DateTime         @default(now())
+  
+  // Relations
+  invitedBy     User            @relation("SentInvitations", fields: [invitedById], references: [id])
+  invitedById   String
+
+  @@index([email])
+  @@index([token])
+  @@index([status])
+}
+
+model AuditLog {
+  id            String    @id @default(cuid())
+  action        String
+  entityType    String
+  entityId      String
+  details       Json
+  createdAt     DateTime  @default(now())
+  
+  // Relations
+  user          User      @relation(fields: [userId], references: [id])
+  userId        String
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Generation {
+  id                      Int       @id @default(autoincrement())
+  prdName                 String
+  prdContent              String    @db.Text
+  userEmail               String
+  status                  Status    @default(IN_PROGRESS)
+  estimatedCompletionTime DateTime
+  deployUrl               String?
+  createdAt               DateTime  @default(now())
+  completedAt             DateTime?
+  
+  // Relations - connect to User if authenticated
+  user                    User?     @relation("UserGenerations", fields: [userId], references: [id])
+  userId                  String?
+
+  @@index([status])
+  @@index([userEmail])
+  @@index([userId])
+  @@index([createdAt])
+}
+
