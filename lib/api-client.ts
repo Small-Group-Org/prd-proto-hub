@@ -91,24 +91,12 @@ class ApiClient {
 
 export const apiClient = new ApiClient();
 
-// Auth API
+// Auth API - SAML only
 export const authApi = {
-  login: (email: string, password: string) =>
-    apiClient.post<{ token: string; user: any }>('/auth/login', { email, password }),
-  
   getProfile: () =>
     apiClient.get<{ user: any }>('/auth/profile'),
   
-  updateProfile: (data: { firstName?: string; lastName?: string; password?: string }) =>
+  updateProfile: (data: { firstName?: string; lastName?: string }) =>
     apiClient.patch<{ message: string; user: any }>('/auth/profile', data),
-  
-  sendInvitation: (email: string, role: 'SUPERUSER' | 'ADMIN' | 'USER') =>
-    apiClient.post<{ message: string; invitationId: string; inviteUrl?: string }>('/auth/invite', { email, role }),
-  
-  getInvitations: () =>
-    apiClient.get<{ invitations: any[] }>('/auth/invite'),
-  
-  acceptInvitation: (data: { token: string; password: string; firstName: string; lastName: string }) =>
-    apiClient.post<{ message: string; user: any }>('/auth/accept-invitation', data),
 };
 

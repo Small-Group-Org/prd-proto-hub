@@ -8,8 +8,8 @@ export default function Navigation() {
   const { user, isAuthenticated, logout } = useAuth();
   const pathname = usePathname();
 
-  // Don't show navigation on login/accept-invitation pages
-  if (pathname === '/login' || pathname === '/accept-invitation') {
+  // Don't show navigation on login page
+  if (pathname === '/login') {
     return null;
   }
 

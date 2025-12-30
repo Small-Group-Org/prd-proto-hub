@@ -21,7 +21,6 @@ interface User {
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
   isAuthenticated: boolean;
@@ -53,21 +52,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
-    try {
-      const response = await authApi.login(email, password);
-      const { user, token } = response;
-      
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      setUser(user);
-      
-      router.push('/');
-    } catch (error) {
-      throw error;
-    }
-  };
-
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -97,7 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAuthenticated = !!user;
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout, refreshUser, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, isLoading, logout, refreshUser, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

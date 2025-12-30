@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getUserFromRequest, hashPassword } from '@/lib/auth';
+import { getUserFromRequest } from '@/lib/auth';
 import { errorResponse, successResponse, unauthorizedResponse } from '@/lib/api-response';
 import { updateProfileSchema, validateData } from '@/lib/validation';
 
@@ -52,15 +52,12 @@ export async function PATCH(request: NextRequest) {
       return errorResponse(validation.error);
     }
 
-    const { firstName, lastName, password } = validation.data;
+    const { firstName, lastName } = validation.data;
 
     // Build update data
     const updateData: any = {};
     if (firstName) updateData.firstName = firstName;
     if (lastName) updateData.lastName = lastName;
-    if (password) {
-      updateData.passwordHash = await hashPassword(password);
-    }
 
     const user = await prisma.user.update({
       where: { id: authUser.id },

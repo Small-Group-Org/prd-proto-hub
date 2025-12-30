@@ -30,16 +30,25 @@ export async function POST(request: NextRequest) {
     });
 
     // Redirect to frontend with token
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    return NextResponse.redirect(`${baseUrl}/login?token=${token}`);
+    // Use 303 See Other to force GET method (prevents POST redirect issues)
+    const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const baseUrl = (envUrl && envUrl !== 'null' && envUrl !== 'undefined') 
+      ? envUrl 
+      : "http://localhost:3000";
+    return NextResponse.redirect(`${baseUrl}/login?token=${token}`, { status: 303 });
   } catch (error) {
     console.error("SAML callback error:", error);
     const errorMessage = error instanceof Error ? error.message : "SAML authentication failed";
     
     // Redirect back to login with error
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    // Use 303 See Other to force GET method (prevents POST redirect issues)
+    const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const baseUrl = (envUrl && envUrl !== 'null' && envUrl !== 'undefined') 
+      ? envUrl 
+      : "http://localhost:3000";
     return NextResponse.redirect(
-      `${baseUrl}/login?error=${encodeURIComponent(errorMessage)}`
+      `${baseUrl}/login?error=${encodeURIComponent(errorMessage)}`,
+      { status: 303 }
     );
   }
 }
@@ -77,16 +86,25 @@ export async function GET(request: NextRequest) {
     });
 
     // Redirect to frontend with token
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    return NextResponse.redirect(`${baseUrl}/login?token=${token}`);
+    // Use 303 See Other to force GET method (prevents POST redirect issues)
+    const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const baseUrl = (envUrl && envUrl !== 'null' && envUrl !== 'undefined') 
+      ? envUrl 
+      : "http://localhost:3000";
+    return NextResponse.redirect(`${baseUrl}/login?token=${token}`, { status: 303 });
   } catch (error) {
     console.error("SAML callback error:", error);
     const errorMessage = error instanceof Error ? error.message : "SAML authentication failed";
     
     // Redirect back to login with error
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    // Use 303 See Other to force GET method (prevents POST redirect issues)
+    const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const baseUrl = (envUrl && envUrl !== 'null' && envUrl !== 'undefined') 
+      ? envUrl 
+      : "http://localhost:3000";
     return NextResponse.redirect(
-      `${baseUrl}/login?error=${encodeURIComponent(errorMessage)}`
+      `${baseUrl}/login?error=${encodeURIComponent(errorMessage)}`,
+      { status: 303 }
     );
   }
 }
