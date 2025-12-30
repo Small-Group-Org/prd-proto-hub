@@ -98,7 +98,7 @@ function HomeContent() {
               Generate UI Prototypes in Minutes 
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 px-2">
-              Submit your PRD and generate UI prototypes
+              ✨ Submit your PRD and wait for the magic to happen ✨
             </p>
           </div>
         </div>
